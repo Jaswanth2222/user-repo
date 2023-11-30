@@ -16,7 +16,7 @@ const Body = () => {
         fetchRepos();
     }, [])
 
-    // function to fetch the data from the server
+    // function to get the data from the api
 
     const fetchRepos = async() => {
         const repoData = await fetch("https://api.github.com/search/repositories?q=Q");
