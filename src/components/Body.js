@@ -16,6 +16,10 @@ const Body = () => {
         fetchRepos();
     }, [])
 
+    useEffect(() => {
+        filterWatchers(watchersCount)
+    }, [watchersCount])
+
     // function to get the data from the api
 
     const fetchRepos = async() => {
@@ -37,7 +41,7 @@ const Body = () => {
 
     const filterRepo = repos?.filter((repo) => repo?.owner?.login?.includes(search));
     return (repos?.length === 0) ? <h1>Loading</h1> : (
-      <Container className="d-flex flex-column align-items-center">
+      <Container className="d-flex flex-column align-items-center my-5">
           
             <div className='d-flex'>
         {/* search bar and button */}
@@ -46,7 +50,7 @@ const Body = () => {
                 <button className='button' onClick={() => setCopyRepos(filterRepo)}>Search</button>
                 
         {/* dropdown to filter watchers */}
-               <DropdownButton className="mx-3" onClick={() => (filterWatchers(watchersCount))} id="dropdown-basic-button" title="watchers">
+               <DropdownButton className="mx-3"  id="dropdown-basic-button" title="watchers">
                     <Dropdown.Item onClick={() => dispatch(watchersValue(1000))}>&lt; 1000</Dropdown.Item>
                     <Dropdown.Item onClick={() => dispatch(watchersValue(1300))}>&lt; 2000</Dropdown.Item>
                     <Dropdown.Item onClick={() => dispatch(watchersValue(1500))}>&lt; 10000</Dropdown.Item>
